@@ -1,6 +1,7 @@
 import UserModel from '../Model/UserModel'
 import response from '../HttpRespose/HttpRespose'
 import bcrypt from 'bcrypt'
+import { generateToken } from '../JWT/index'
 export default {
     Register: async (req: any, res: any) => {
         try {
@@ -25,6 +26,27 @@ export default {
         }
     },
     Login: async (req: any, res: any) => {
-
+        try {
+            const { username, password } = req.body;
+            let User = await UserModel.findOne({ email:username }) || await UserModel.findOne({ phone:username });
+            if (!User) {
+                response.handleNotFound(res, 'Incorrect Email Or Phone Number');
+            } else {
+                const passwordMatch = await bcrypt.compare(password, User.password);
+                if (!passwordMatch) {
+                    response.unAuthorized(res, 'Password Incorrect.');
+                } else {
+                    const token = generateToken({ _id: User._id, name: User.name, email: User.email, phone: User.phone });
+                    const userDetail = await UserModel.findOne(
+                        { _id: User._id },
+                        { _id: 1, name: 1, email: 1, phone: 1 }
+                    );
+                    response.handleSuccess(res, { userDetail, token }, 'User LoggedIn.');
+                }
+            }
+        } catch (error) {
+            console.log("Exception", error);
+            return response.somethingWentWrong(res);
+        }
     }
 }
