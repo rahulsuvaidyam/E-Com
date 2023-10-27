@@ -2,14 +2,15 @@ import { Response, NextFunction } from 'express'; // Import the types from Expre
 import jwt from 'jsonwebtoken';
 import response from '../HttpRespose/HttpRespose';
 import mongoose from 'mongoose';
-const SECRET:string = process.env.JWT_SECRET|| '';
+const SECRET:string = process.env.DB_URI_SECRET|| '';
 
 // Define the user object type
 interface User {
     _id: mongoose.Types.ObjectId;
     name: string;
-    email: string;
-    phone:string
+    email: string | undefined;
+    phone:string | undefined
+    gender:string | undefined
 }
 
 // Generate a JWT token
@@ -19,6 +20,7 @@ const generateToken = (user: User): string => {
         name: user.name,
         email: user.email,
         phone:user.phone,
+        gender:user.gender,
     };
     const options = {
         // expiresIn: '1h', // Token expiration time (optional)
