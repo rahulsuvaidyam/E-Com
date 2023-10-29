@@ -5,10 +5,19 @@ const categorySchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    unique:true
+    unique: true
   },
-},{
-    timestamps: true
+  created_by: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    require: true
+  },
+  modified_by: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
+}, {
+  timestamps: true
 });
 
 // Create the User model based on the schema

@@ -14,25 +14,34 @@ const userSchema = new mongoose.Schema({
     type: String,
     unique: true
   },
-  password:{
-    type:String,
-    required:true
+  password: {
+    type: String,
+    required: true
   },
   gender: {
-    type:String,
-    enum:["MALE","FEMALE","OTHER"],
-    default:"MALE"
+    type: String,
+    enum: ["MALE", "FEMALE", "OTHER"],
+    default: "MALE"
   },
   age: {
     type: Number
   },
-  role:{
-    type:String,
-    enum:["ADMIN","SELLER","BUYER"],
-    default:"BUYER"
+  role: {
+    type: String,
+    enum: ["ADMIN", "SELLER", "BUYER"],
+    default: "BUYER"
   },
-},{
-    timestamps: true
+  created_by: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    require: true
+  },
+  modified_by: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
+}, {
+  timestamps: true
 });
 
 // Create the User model based on the schema
