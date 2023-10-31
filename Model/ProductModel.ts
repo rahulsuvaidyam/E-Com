@@ -8,10 +8,6 @@ const schema = new mongoose.Schema({
     price:{type: Number, require: true},
     discounts:{type: Number, default:0},
     key_features:[{ type: String, require: true }],
-    rating:{
-        type: Number,
-        "enum": [1,2,3,4,5],
-    },
     created_by: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
