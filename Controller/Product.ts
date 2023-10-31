@@ -14,7 +14,18 @@ export default {
     },
     getProducts: async (req: any, res: any) => {
         try {
-            const newProduct = await ProductModel.find().populate('category',{_id:1,name:1}).populate('created_by',{_id:1,name:1});
+            const newProduct = await ProductModel.find().populate('category',{_id:1,name:1})
+            .populate('created_by',{_id:1,name:1}).populate('images');
+            response.handleSuccess(res, newProduct , 'Product Added Successfully.')
+        } catch (error) {
+            console.error(error);
+            response.somethingWentWrong(res);
+        }
+    },
+    findByIdProducts: async (req: any, res: any) => {
+        try {
+            const newProduct = await ProductModel.find(req.query).populate('category',{_id:1,name:1})
+            .populate('created_by',{_id:1,name:1}).populate('images');
             response.handleSuccess(res, newProduct , 'Product Added Successfully.')
         } catch (error) {
             console.error(error);

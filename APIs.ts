@@ -7,13 +7,15 @@ import CategoryRouter from './Router/CategoryRouter';
 import MediaRouter from './Router/mediaRouter';
 import ProductRouter from './Router/ProductRouter';
 import RateRouter from './Router/RateRouter';
+import Router from './Router/Router';
 
 Api.use('/auth',AuthRouter);
 Api.use('/uploads', express.static('uploads'));
-Api.use('/',CategoryRouter)
-Api.use(verifyToken)
-Api.use('/',ProfileRouter)
 Api.use('/',MediaRouter)
+Api.use('/',Router)
+Api.use(verifyToken)
+Api.use('/',CategoryRouter)
+Api.use('/',ProfileRouter)
 Api.use('/',ProductRouter)
 Api.use('/',RateRouter)
 
