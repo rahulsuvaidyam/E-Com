@@ -7,6 +7,11 @@ const categorySchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  image: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Media',
+    require: true
+  },
   created_by: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
