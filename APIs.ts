@@ -8,9 +8,10 @@ import MediaRouter from './Router/mediaRouter';
 import ProductRouter from './Router/ProductRouter';
 
 Api.use('/auth',AuthRouter);
+Api.use('/uploads', express.static('uploads'));
+Api.use('/',CategoryRouter)
 Api.use(verifyToken)
 Api.use('/',ProfileRouter)
-Api.use('/',CategoryRouter)
 Api.use('/',MediaRouter)
 Api.use('/',ProductRouter)
 
