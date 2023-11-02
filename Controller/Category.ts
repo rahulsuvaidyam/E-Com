@@ -1,30 +1,21 @@
 import CategoryModel from '../Model/CategoryModel'
 import response from '../HttpRespose/HttpRespose'
+import mongoose from 'mongoose';
 export default {
-    Get: async (req: any, res: any) => {
+    GetCategory: async (req: any, res: any) => {
         try {
-            const category = await CategoryModel.find().populate('image');
+            const category = await CategoryModel.find({created_by:req.user._id}).populate('image');
             response.handleSuccess(res, category, 'Category List')
 
         } catch (error) {
             response.somethingWentWrong(res)
         }
     },
-    GetDropDown: async (req: any, res: any) => {
+    PostCategory: async (req: any, res: any) => {
         try {
-            const category = await CategoryModel.find({}, { _id: 1, name: 1 });
-            response.handleSuccess(res, category, 'Category List')
-
-        } catch (error) {
-            response.somethingWentWrong(res)
-        }
-    },
-    Post: async (req: any, res: any) => {
-        try {
+            req.body['created_by'] = req.user._id;
             if (req.body.name) {
                 const category = await CategoryModel.findOne({ $and: [{ name: { $regex: req.body.name, $options: 'i' } }] });
-                console.log(category)
-                console.log(req.body)
                 if (category) {
                     response.badRequest(res, 'Duplicate category')
                 } else {
@@ -56,4 +47,22 @@ export default {
             response.somethingWentWrong(res)
         }
     },
+    GetDropDown: async (req: any, res: any) => {
+        try {
+            const category = await CategoryModel.find({}, { _id: 1, name: 1 });
+            response.handleSuccess(res, category, 'Category List')
+
+        } catch (error) {
+            response.somethingWentWrong(res)
+        }
+    },
+    GetShow: async (req: any, res: any) => {
+        try {
+            const category = await CategoryModel.find().populate('image');
+            response.handleSuccess(res, category, 'Category List')
+        } catch (error) {
+            response.somethingWentWrong(res)
+        }
+    },
+      
 }

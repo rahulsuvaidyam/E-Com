@@ -41,7 +41,7 @@ const userSchema = new mongoose.Schema({
     ref: 'User',
   },
   details: {
-    type:[{
+    type:{
         shop_name:{
             type:String,
             default:null
@@ -55,7 +55,7 @@ const userSchema = new mongoose.Schema({
             default:null
         },
        
-    }],
+    },
     default:null
 },
 }, {
