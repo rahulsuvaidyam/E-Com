@@ -11,9 +11,9 @@ import Router from './Router/Router';
 
 Api.use('/auth',AuthRouter);
 Api.use('/uploads', express.static('uploads'));
-Api.use('/',MediaRouter)
 Api.use('/',Router)
 Api.use(verifyToken)
+Api.use('/',MediaRouter)
 Api.use('/',CategoryRouter)
 Api.use('/',ProfileRouter)
 Api.use('/',ProductRouter)

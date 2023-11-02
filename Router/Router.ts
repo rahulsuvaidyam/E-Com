@@ -7,5 +7,6 @@ import Category from '../Controller/Category';
 Router.get('/category',Category.Get);
 // Router.get('/categoryfordd',Category.GetDropDown);
 Router.get('/product',Product.getProducts);
-Router.get('/productid',Product.findByIdProducts);
+Router.get('/productbycategory',Product.findByIdProducts);
+Router.get('/productone',Product.findByIdOne);
 export default Router;
