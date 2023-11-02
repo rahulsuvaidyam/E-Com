@@ -3,8 +3,10 @@ const categoryRouter = express.Router();
 
 import Category from '../Controller/Category';
 
-categoryRouter.post('/category',Category.Post);
 categoryRouter.get('/categoryfordd',Category.GetDropDown);
+categoryRouter.post('/category',Category.Post);
+categoryRouter.put('/category',Category.PutCategory);
+categoryRouter.delete('/category',Category.DelteCategory);
 // categoryRouter.get('/category',Category.Get);
 // categoryRouter.get('/category',Category.Get);
 

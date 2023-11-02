@@ -40,6 +40,24 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
+  details: {
+    type:[{
+        shop_name:{
+            type:String,
+            default:null
+        },
+        address:{
+            type:String,
+            default:null
+        },
+        pin_code:{
+            type:Number,
+            default:null
+        },
+       
+    }],
+    default:null
+},
 }, {
   timestamps: true
 });

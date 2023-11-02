@@ -32,4 +32,30 @@ export default {
             response.somethingWentWrong(res);
         }
     },
+    findByIdOne: async (req: any, res: any) => {
+        try {
+            const newProduct = await ProductModel.findOne(req.query).populate('category',{_id:1,name:1})
+            .populate('created_by',{_id:1,name:1}).populate('images');
+            response.handleSuccess(res, newProduct , 'Product Details')
+        } catch (error) {
+            console.error(error);
+            response.somethingWentWrong(res);
+        }
+    },
+    PutProduct: async (req: any, res: any) => {
+        try {
+            const product = await ProductModel.findByIdAndUpdate(req.body._id,req.body,{new:true});
+            response.handleSuccess(res,product,'Product Updated.');
+        } catch (error) {
+            response.somethingWentWrong(res)
+        }
+    },
+    DelteProduct: async (req: any, res: any) => {
+        try {
+            const product = await ProductModel.findByIdAndDelete(req.body);
+            response.handleSuccess(res,product,'Product Deleted.');
+        } catch (error) {
+            response.somethingWentWrong(res)
+        }
+    },
 }
