@@ -4,9 +4,9 @@ const Router = express.Router();
 import Product from '../Controller/Product';
 import Category from '../Controller/Category';
 
-Router.get('/category',Category.Get);
+Router.get('/categoryshow',Category.GetShow);
 // Router.get('/categoryfordd',Category.GetDropDown);
-Router.get('/product',Product.getProducts);
-Router.get('/productbycategory',Product.findByIdProducts);
-Router.get('/productone',Product.findByIdOne);
+Router.get('/productshow',Product.GetShow);
+Router.get('/categorybyproduct',Product.GetShowfindById);
+Router.get('/productdetails',Product.GetShowDetails);
 export default Router;

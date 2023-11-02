@@ -3,7 +3,8 @@ const ProductRouter = express.Router();
 
 import Product from '../Controller/Product';
 
+ProductRouter.get('/product',Product.GetProduct);
+ProductRouter.post('/product',Product.PostProduct);
 ProductRouter.put('/product',Product.PutProduct);
-ProductRouter.post('/product',Product.createProduct);
 ProductRouter.delete('/product',Product.DelteProduct);
 export default ProductRouter;

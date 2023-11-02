@@ -5,7 +5,7 @@ import { generateToken } from '../JWT/index'
 export default {
     Register: async (req: any, res: any) => {
         try {
-            const { name, email, phone, password, role,gender } = req.body;
+            const { name, email, phone, password, role,gender ,details} = req.body;
             if (!name && !email && !phone && !password) {
                 response.badRequest(res, 'All fields are required')
             } else {
@@ -17,7 +17,7 @@ export default {
                     response.badRequest(res, 'Phone number already exits')
                 } else {
                     const hashedPassword = await bcrypt.hash(password, 10);
-                    const User = await UserModel.create({ name, email, phone, password: hashedPassword, role,gender });
+                    const User = await UserModel.create({ name, email, phone,details, password: hashedPassword, role,gender });
                     response.handleSuccess(res, User, 'User registered')
                 }
             }
