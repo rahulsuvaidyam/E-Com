@@ -10,7 +10,7 @@ const eventSchema = new mongoose.Schema({
   image: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Media',
-    require: true
+    require: false
   },
   created_by: {
     type: mongoose.Schema.Types.ObjectId,
