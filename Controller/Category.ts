@@ -1,6 +1,5 @@
 import CategoryModel from '../Model/CategoryModel'
 import response from '../HttpRespose/HttpRespose'
-import mongoose from 'mongoose';
 export default {
     GetCategory: async (req: any, res: any) => {
         try {

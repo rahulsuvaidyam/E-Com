@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 const schema = new mongoose.Schema({
     name: { type: String, require: true },
     category: {type: mongoose.Schema.Types.ObjectId,ref: 'Category',require: true},
+    event: {type: mongoose.Schema.Types.ObjectId,ref: 'Event',require: true},
     images:[{type: mongoose.Schema.Types.ObjectId,ref: 'Media',require: false}],
     description:{type: String, require: true},
     price:{type: Number, require: true},
