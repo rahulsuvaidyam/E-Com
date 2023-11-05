@@ -10,6 +10,7 @@ import RateRouter from './Router/RateRouter';
 import Router from './Router/Router';
 import EventRouter from './Router/EventRouter';
 import CarouselRouter from './Router/CarouselRouter';
+import CartRouter from './Router/CartRouter';
 
 Api.use('/auth',AuthRouter);
 Api.use('/uploads', express.static('uploads'));
@@ -22,6 +23,7 @@ Api.use('/',ProductRouter)
 Api.use('/',RateRouter)
 Api.use('/',EventRouter)
 Api.use('/',CarouselRouter)
+Api.use('/',CartRouter)
 
 
 export default Api;

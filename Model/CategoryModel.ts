@@ -25,7 +25,6 @@ const categorySchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Create the User model based on the schema
 const Category = mongoose.model('Category', categorySchema);
 
 export default Category;
