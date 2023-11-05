@@ -26,6 +26,6 @@ const eventSchema = new mongoose.Schema({
 });
 
 // Create the User model based on the schema
-const User = mongoose.model('Event', eventSchema);
+const Event = mongoose.model('Event', eventSchema);
 
-export default User;
+export default Event;
