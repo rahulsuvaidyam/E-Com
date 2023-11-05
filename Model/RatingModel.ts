@@ -19,5 +19,5 @@ const schema = new mongoose.Schema({
     timestamps: true
 });
 
-const Media = mongoose.model('Rate', schema);
-export default Media;
+const Rate = mongoose.model('Rate', schema);
+export default Rate;

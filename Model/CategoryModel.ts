@@ -26,6 +26,6 @@ const categorySchema = new mongoose.Schema({
 });
 
 // Create the User model based on the schema
-const User = mongoose.model('Category', categorySchema);
+const Category = mongoose.model('Category', categorySchema);
 
-export default User;
+export default Category;

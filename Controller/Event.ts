@@ -38,15 +38,6 @@ export default {
             response.somethingWentWrong(res)
         }
     },
-    // GetShow: async (req: any, res: any) => {
-    //     try {
-    //         const category = await EventModel.find().populate('image');
-    //         response.handleSuccess(res, category, 'Event List')
-
-    //     } catch (error) {
-    //         response.somethingWentWrong(res)
-    //     }
-    // },
     GetOccasion: async (req: any, res: any) => {
         try {
             const category = await EventModel.find({name: {
