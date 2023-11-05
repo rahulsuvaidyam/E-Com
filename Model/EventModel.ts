@@ -25,7 +25,6 @@ const eventSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Create the User model based on the schema
 const Event = mongoose.model('Event', eventSchema);
 
 export default Event;
