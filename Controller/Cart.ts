@@ -37,7 +37,7 @@ export default {
         try {
             const cart = await CartModel.findByIdAndUpdate({_id:req.body._id}, { count: req.body.value }, // Use $inc to increment the 'count' field by 1
             { new: true });
-            response.handleSuccess(res, cart, 'Item  qty');
+            response.handleSuccess(res, cart, 'Item qty update');
           
         } catch (error) {
             console.error(error);

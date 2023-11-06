@@ -11,6 +11,8 @@ import Router from './Router/Router';
 import EventRouter from './Router/EventRouter';
 import CarouselRouter from './Router/CarouselRouter';
 import CartRouter from './Router/CartRouter';
+import AddressRouter from './Router/AddressRouter';
+import MastRouter from './Router/Master';
 
 Api.use('/auth',AuthRouter);
 Api.use('/uploads', express.static('uploads'));
@@ -24,6 +26,8 @@ Api.use('/',RateRouter)
 Api.use('/',EventRouter)
 Api.use('/',CarouselRouter)
 Api.use('/',CartRouter)
+Api.use('/',AddressRouter)
+Api.use('/',MastRouter)
 
 
 export default Api;
