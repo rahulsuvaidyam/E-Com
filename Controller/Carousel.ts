@@ -40,13 +40,12 @@ export default {
     },
     GetShowCarousel: async (req: any, res: any) => {
         try {
-            const carousel = await CarouselModel.find({status:"active"}).populate('images');
-            response.handleSuccess(res, carousel, 'Carousel List')
-
+            const carousel = await CarouselModel.findOne({ status: "active" }).sort({ createdAt: -1 }).populate('images');
+            response.handleSuccess(res, carousel, 'Carousel');
         } catch (error) {
-            response.somethingWentWrong(res)
+            response.somethingWentWrong(res);
         }
-        
-    },
+    }
+    
    
 }
