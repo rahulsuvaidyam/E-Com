@@ -11,6 +11,15 @@ export default {
             response.somethingWentWrong(res);
         }
     },
+    GetAddressbuyproduct: async (req: any, res: any) => {
+        try {
+            const address = await AddressModel.findOne({user:req.query.user,status:'active'}).sort({ updatedAt: -1 }).populate('state').populate('district');
+            response.handleSuccess(res, address, 'Address List.')
+        } catch (error) {
+            console.error(error);
+            response.somethingWentWrong(res);
+        }
+    },
     PostAddress: async (req: any, res: any) => {
         try {
             req.body['user'] = req.user._id;
