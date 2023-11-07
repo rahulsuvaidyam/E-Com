@@ -17,6 +17,27 @@ export default {
             response.somethingWentWrong(res);
         }
     },
+    GetCartToBuy : async (req:any,res:any) => {
+        try {
+            const cart = await CartModel.find({
+                _id: { $in: req.query._id }
+              })
+              .populate('product')
+              .populate({
+                path: "product",
+                select: '_id name price discounts',
+                populate: [
+                  { path: 'images', select: '_id url' },
+                  { path: 'category', select: '_id name' }
+                ]
+              })
+              .select("_id user count");
+              response.handleSuccess(res, cart, 'Item add to buy')
+              
+        } catch (error) {
+            response.somethingWentWrong(res);
+        }
+    },
     PostCart: async (req: any, res: any) => {
         try {
             const cartfind = await CartModel.findOne(req.body)
@@ -28,8 +49,7 @@ export default {
                 response.handleSuccess(res, 'Item on cart');
             }
 
-        } catch (error) {
-            console.error(error);
+        } catch (error) { 
             response.somethingWentWrong(res);
         }
     },
