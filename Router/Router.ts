@@ -11,6 +11,7 @@ Router.get('/eventoccasion',Event.GetOccasion);
 Router.get('/carouselshow',Carousel.GetShowCarousel);
 // Router.get('/categoryfordd',Category.GetDropDown);
 // product
+Router.get('/search',Product.GetSearch);
 Router.get('/productshow',Product.GetShow);
 Router.get('/categorybyproduct',Product.GetShowfindById);
 Router.get('/productdetails',Product.GetShowDetails);
