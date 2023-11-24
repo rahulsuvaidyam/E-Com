@@ -68,6 +68,21 @@ export default {
             response.somethingWentWrong(res);
         }
     },
+    GetSearch: async (req: any, res: any) => {
+        try {
+            if (req?.query?.name) {
+                const newProduct = await ProductModel.find({ name: { $regex: req.query.name, $options: 'i' } }
+                    , { name: 1, category: 1, images: { $slice: 1 } })
+                    .populate('category', { _id: 1, name: 1 }).populate('images');
+                response.handleSuccess(res, newProduct, 'Product list')
+            } else {
+                response.handleSuccess(res,[], 'Search Now')
+            }
+        } catch (error) {
+            console.error(error);
+            response.somethingWentWrong(res);
+        }
+    },
     GetShowGrop: async (req: any, res: any) => {
         try {
             const groupedProducts = await ProductModel.aggregate([
@@ -120,7 +135,7 @@ export default {
                                 input: "$products",
                                 as: "product",
                                 in: {
-                                    _id:"$$product._id",
+                                    _id: "$$product._id",
                                     name: "$$product.name",
                                     price: "$$product.price",
                                     category: "$$product.category.name",
