@@ -51,7 +51,7 @@ export default {
     GetShowfindById: async (req: any, res: any) => {
         try {
             const newProduct = await ProductModel.find(req.query).populate('category', { _id: 1, name: 1 })
-                .populate('created_by', { _id: 1, name: 1 }).populate('images');
+                .populate('created_by', { _id: 1, name: 1 }).populate('images').populate('event',{name:1});
             response.handleSuccess(res, newProduct, 'Product Added Successfully.')
         } catch (error) {
             console.error(error);
