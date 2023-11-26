@@ -8,7 +8,7 @@ const schema = new mongoose.Schema({
     description:{type: String, require: true},
     price:{type: Number, require: true},
     discounts:{type: Number, default:0},
-    key_features:[{ type: String, require: true }],
+    key_features:{ type: String, require: true },
     created_by: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
