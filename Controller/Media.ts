@@ -1,5 +1,7 @@
 import MediaModel from "../Model/MediaModel";
 import response from "../HttpRespose/HttpRespose";
+import fs from 'fs';
+import path from "path";
 
 export default {
     createMedia: async (req: any, res: any) => {
@@ -17,10 +19,23 @@ export default {
     deleteMediaPermanent: async (req: any, res: any) => {
         try {
             const deletedMedia = await MediaModel.findByIdAndDelete(req.body._id, { new: true });
-            response.handleSuccess(res, {_id:deletedMedia?._id}, 'File Deleted Successfully.');
+            const imagePath = path.join(__dirname, '../' + deletedMedia?.url);
+    
+            if (fs.existsSync(imagePath)) {
+                fs.unlink(imagePath, (err) => {
+                    if (err) {
+                        return res.status(400).json({ message: "Error deleting image", err });
+                    }
+                    return res.status(200).json({ message: `File and Image Successfully Deleted`, _id: deletedMedia?._id });
+                });
+            } else {
+                return res.status(400).json({ message: "Image not found" });
+            }
         } catch (error) {
             console.error(error);
             response.somethingWentWrong(res);
         }
     }
+    
+    
 }
