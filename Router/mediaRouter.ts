@@ -2,8 +2,8 @@ import express from 'express';
 const MediaRouter = express.Router();
 
 import Media from '../Controller/Media';
-import upload from '../DataBase/fileUpload';
+// import upload from '../DataBase/fileUpload';
 
 MediaRouter.delete('/media',Media.deleteMediaPermanent);
-MediaRouter.post('/media',upload,Media.createMedia);
+MediaRouter.post('/media',Media.createMedia);
 export default MediaRouter;
